@@ -1,0 +1,531 @@
+html
+{
+    box-sizing: border-box;
+    font-size: 62.5%;
+    min-height: 100vh;
+}
+
+*,
+*::before,
+*::after
+{
+    box-sizing: inherit;
+}
+
+html,
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    display: flex;
+    flex-direction: column;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #fff;
+    padding: 0 20px;
+}
+
+input[type=radio],
+input[type=checkbox],
+input[id="city-departure"],
+.svg-hide {
+    display: none;
+}
+
+.table-filter
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto 0;
+    width: 100%;
+    min-width: 1000px;
+    max-width: 1200px;
+    min-height: 70px;
+    background-image: linear-gradient(#8c8c8c 0%, #454545 100%);
+    border: 1px solid #afafaf;
+    border-bottom: 3px solid #000;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 0 20px;
+
+    &__type {
+        flex: 0 0 180px;
+        display: flex;
+        height: 40px;
+        border-radius: 20px;
+        box-shadow: 0 -1px 1px 2px #000, 0 -1px 3px 3px rgba(255,255,255,.3);
+
+        label {
+            flex: 1 1 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+
+            :before,
+            :after {
+                content: '';
+                position: absolute;
+                height: 20px;
+                width: 20px;
+                z-index: 1;
+            }
+
+            svg {
+                transition: all .3s;
+            }
+
+            &:hover svg {
+                transition: all .3s;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        label:first-of-type {
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+
+            :before {
+                top: 0;
+                right: -20px;
+            }
+
+            :after {
+                bottom: 0;
+                right: 0;
+                border-bottom-right-radius: 20px;
+                z-index: 2;
+            }
+        }
+
+        label:last-of-type {
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+
+            :before {
+                top: 0;
+                left: 0;
+                border-top-left-radius: 20px;
+                z-index: 2;
+            }
+
+            :after {
+                bottom: 0;
+                left: -20px;
+            }
+        }
+
+    }
+
+    &__terminal {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        flex: 0 0 300px;
+
+        &-text {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        &-types {
+            display: flex;
+            flex: 1 1 150px;
+            justify-content: space-around;
+
+            label {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 2rem;
+                font-weight: bold;
+
+                &:first-child {
+                    background-color: #d93232;
+                    &:hover {
+                        background-color: lighten(saturate(#d93232, 10%), 5%);
+                    }
+                    &:active {
+                        background-color: darken(desaturate(#d93232, 5%), 5%);
+                    }
+                }
+
+                &:nth-child(2) {
+                    background-color: #3275d9;
+                    &:hover {
+                        background-color: lighten(saturate(#3275d9, 10%), 5%);
+                    }
+                    &:active {
+                        background-color: darken(desaturate(#3275d9, 5%), 5%);
+                    }
+                }
+
+                &:nth-child(3) {
+                    background-color: #ac32d9;
+                    &:hover {
+                        background-color: lighten(saturate(#ac32d9, 10%), 5%);
+                    }
+                    &:active {
+                        background-color: darken(desaturate(#ac32d9, 5%), 5%);
+                    }
+                }
+
+                &:nth-child(4) {
+                    background-color: #61d932;
+                    &:hover {
+                        background-color: lighten(saturate(#61d932, 10%), 5%);
+                    }
+                    &:active {
+                        background-color: darken(desaturate(#61d932, 5%), 5%);
+                    }
+                }
+            }
+        }
+    }
+
+    &__city {
+        flex: 0 1 200px;
+        width: 100%;
+        min-width: 50px;
+        padding: 5px;
+        outline: none;
+        border: 3px solid #b7babe;
+        border-radius: 5px;
+        color: #000;
+        background-color: #fff;
+        transition: border 0.3s;
+        font-family: Helvetica, Arial, sans-serif;
+
+        &:invalid {
+            border: 3px solid #f00;
+        }
+
+        &:focus {
+            border: 3px solid #eab664;
+        }
+    }
+}
+
+#filter-departure:checked ~ .table-filter label[for="filter-departure"],
+#filter-arrival:checked ~ .table-filter label[for="filter-arrival"] {
+    background-image: linear-gradient(#f88a10 0%, #eab664 100%);
+
+    :before {
+        background-image: linear-gradient(#f88a10 0%, #f1a03a 100%);
+    }
+
+    :after {
+        background-image: linear-gradient(#f1a03a 0%, #eab664 100%);
+    }
+}
+
+#filter-departure:not(:checked) ~ .table-filter label[for="filter-departure"],
+#filter-arrival:not(:checked) ~ .table-filter label[for="filter-arrival"] {
+    background-image: linear-gradient(#dadfe1 0%, #b7babe 100%);
+
+    :before {
+        background-image: linear-gradient(#dadfe1 0%, #c9cdd0 100%);
+    }
+
+    :after {
+        background-image: linear-gradient(#c9cdd0 0%, #b7babe 100%);
+    }
+}
+
+#terminal-a:not(:checked) ~ .table-filter label[for="terminal-a"],
+#terminal-b:not(:checked) ~ .table-filter label[for="terminal-b"],
+#terminal-c:not(:checked) ~ .table-filter label[for="terminal-c"],
+#terminal-d:not(:checked) ~ .table-filter label[for="terminal-d"] {
+    background-color: #b8bcbf;
+    &:hover {
+        background-color: lighten(saturate(#b8bcbf, 10%), 5%);
+    }
+}
+
+table
+{
+    width: 100%;
+    min-width: 1000px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    color: #000;
+    font-size: 1.6rem;
+    table-layout: fixed;
+
+    caption {
+        margin-top: 10px;
+        caption-side: bottom;
+    }
+
+    thead tr {
+        color: #fff;
+        background-image: linear-gradient(#555 0%, #000 100%);
+
+        &:hover {
+            background-image: linear-gradient(#666 0%, #333 100%);
+        }
+
+        th {
+            height: 50px;
+            &:hover {
+                background-image: linear-gradient(#dadfe1 0%, #b7babe 100%);
+            }
+        }
+
+        .row-type,
+        .row-flight,
+        .row-scheduled,
+        .row-aircraft,
+        .row-terminal,
+        .row-status {
+            width: 10%;
+        }
+
+        .row-airline,
+        .row-dest {
+            width: 20%;
+        }
+    }
+
+    tbody {
+        tr {
+            height: 50px;
+            border-bottom: 1px solid #000;
+
+            &[data-type~="departure"] {
+                &:nth-child(2),
+                &:nth-child(5),
+                &:nth-child(10),
+                &:nth-child(13),
+                &:nth-child(14){
+                    background-color: #f88a10;
+                    &:hover {
+                        background-color: spin(lighten(saturate(#f88a10, 10%), 5%), 15);
+                    }
+                    td:hover {
+                        background-color: #f88a10;
+                    }
+                }
+            }
+
+            &[data-type~="departure"] {
+                &:nth-child(3),
+                &:nth-child(7),
+                &:nth-child(11),
+                &:nth-child(15){
+                    background-color: #eab664;
+                    &:hover {
+                        background-color: spin(lighten(saturate(#eab664, 10%), 5%), 15);
+                    }
+                    td:hover {
+                        background-color: #eab664;
+                    }
+                }
+            }
+
+            &[data-type~="arrival"] {
+                &:nth-child(1),
+                &:nth-child(6),
+                &:nth-child(9),
+                &:nth-child(13) {
+                    background-color: #f88a10;
+                    &:hover {
+                        background-color: spin(lighten(saturate(#f88a10, 10%), 5%), 15);
+                    }
+                    td:hover {
+                        background-color: #f88a10;
+                    }
+                }
+            }
+
+            &[data-type~="arrival"] {
+                &:nth-child(2),
+                &:nth-child(4),
+                &:nth-child(8),
+                &:nth-child(12){
+                    background-color: #eab664;
+                    &:hover {
+                        background-color: spin(lighten(saturate(#eab664, 10%), 5%), 15);
+                    }
+                    td:hover {
+                        background-color: #eab664;
+                    }
+                }
+            }
+        }
+
+        td {
+            &.cell-type {
+                padding-left: 10px;
+            }
+
+            &:not(.cell-type) {
+                text-align: center;
+            }
+
+            &.cell-airline {
+                text-align: center;
+
+                img {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            }
+
+            span {
+                padding: 5px;
+                border-radius: 5px;
+
+                &.check-in,
+                &.boarding{
+                    background-color: #4bb313;
+                }
+
+                &.closed,
+                &.departed,
+                &.cancel {
+                    background-color: #e22222;
+                }
+            }
+        }
+    }
+}
+
+#terminal-a:not(:checked) ~ table tbody tr[data-terminal~="a"] {
+    display: none;
+}
+
+#terminal-b:not(:checked) ~ table tbody tr[data-terminal~="b"] {
+    display: none;
+}
+
+#terminal-c:not(:checked) ~ table tbody tr[data-terminal~="c"] {
+    display: none;
+}
+
+#terminal-d:not(:checked) ~ table tbody tr[data-terminal~="d"] {
+    display: none;
+}
+
+#filter-departure:checked ~ table tbody tr[data-type~="arrival"] {
+    display: none;
+}
+
+#filter-arrival:checked ~ table tbody tr[data-type~="departure"] {
+    display: none;
+}
+
+#city-departure[value="Moscow"] ~ table tbody tr:not([data-city~="Moscow"]) {
+    display: none;
+}
+
+#city-departure[value="Minsk"] ~ table tbody tr:not([data-city~="Minsk"]) {
+    display: none;
+}
+
+#city-departure[value="New-Dehli"] ~ table tbody tr:not([data-city~="New-Dehli"]) {
+    display: none;
+}
+
+#city-departure[value="London"] ~ table tbody tr:not([data-city~="London"]) {
+    display: none;
+}
+
+#city-departure[value="Seatle"] ~ table tbody tr:not([data-city~="Seatle"]) {
+    display: none;
+}
+
+#city-departure[value="Ankara"] ~ table tbody tr:not([data-city~="Ankara"]) {
+    display: none;
+}
+
+#city-departure[value="Brazilia"] ~ table tbody tr:not([data-city~="Brazilia"]) {
+    display: none;
+}
+
+#city-departure[value="Beijing"] ~ table tbody tr:not([data-city~="Beijing"]) {
+    display: none;
+}
+
+#city-departure[value="Barcelona"] ~ table tbody tr:not([data-city~="Barcelona"]) {
+    display: none;
+}
+
+.table-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    min-width: 1000px;
+    max-width: 1200px;
+    margin: 50px auto 0;
+    color: #000;
+    font-size: 1.4rem;
+    border: 1px solid #000;
+    padding: 20px;
+
+    label {
+        flex: 1 1 auto;
+        margin-left: 50px;
+    }
+    input {
+        flex: 4 1 auto;
+        margin-right: 50px;
+        padding: 10px;
+        outline: none;
+        border: 3px solid #b7babe;
+        transition: border 0.3s;
+        font-family: Helvetica, Arial, sans-serif;
+
+        &:invalid {
+            border: 3px solid #f00;
+        }
+
+        &:valid {
+            border: 3px solid #4bb313;
+        }
+
+        &:focus {
+        border: 3px solid #eab664;
+        }
+    }
+
+    button {
+        margin-top: 20px;
+        flex: 1 0 100%;
+        padding: 10px;
+        outline: none;
+        background-color: #ff9000;
+        border: 2px solid #666;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 1.6rem;
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        display: none;
+
+        &:hover {
+            background-color: lighten(#ff9000, 15%);
+        }
+    }
+}
+
+#phone:valid ~ #email:valid ~ button {
+    display: block;
+}

@@ -1,0 +1,677 @@
+html
+{
+    box-sizing: border-box;
+    font-size: 62.5%;
+    min-height: 100vh;
+}
+
+*,
+*::before,
+*::after
+{
+    box-sizing: inherit;
+}
+
+html,
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #fff;
+    padding: 0 20px;
+}
+
+input[type=radio],
+input[type=checkbox],
+input[id="city-departure"]
+{
+    display: none;
+}
+
+.table-filter {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+    -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+    -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+    margin: 20px auto 0;
+    width: 100%;
+    min-width: 1000px;
+    max-width: 1200px;
+    min-height: 70px;
+    background-image: linear-gradient(#8c8c8c 0%, #454545 100%);
+    border: 1px solid #afafaf;
+    border-bottom: 3px solid #000;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 0 20px;
+}
+
+.table-filter__type
+{
+    -webkit-flex: 0 0 180px;
+      -ms-flex: 0 0 180px;
+          flex: 0 0 180px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 40px;
+    border-radius: 20px;
+    box-shadow: 0 -1px 1px 2px #000000, 0 -1px 3px 3px rgba(255, 255, 255, 0.3);
+}
+
+.table-filter__type label
+{
+    -webkit-flex: 1 1 50%;
+      -ms-flex: 1 1 50%;
+          flex: 1 1 50%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+    -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.table-filter__type label span {
+    background: url('img/icon-plane.svg');
+    width: 32px;
+    height: 32px;
+}
+
+.table-filter__type label:before,
+.table-filter__type label:after
+{
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    z-index: 1;
+}
+
+.table-filter__type label span
+{
+    transition: all .3s;
+}
+
+.table-filter__type label:hover span
+{
+    transition: all .3s;
+    width: 40px;
+    height: 40px;
+}
+
+.table-filter__type label:first-of-type
+{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.table-filter__type label:first-of-type:before
+{
+    top: 0;
+    right: -20px;
+}
+
+.table-filter__type label:first-of-type:after
+{
+    bottom: 0;
+    right: 0;
+    border-bottom-right-radius: 20px;
+    z-index: 2;
+}
+
+.table-filter__type label:last-of-type
+{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.table-filter__type label:last-of-type span {
+    transform: rotate(55deg);
+}
+
+.table-filter__type label:last-of-type div {
+    transform: rotate(55deg);
+    transform-origin: 50% 50%;
+}
+
+.table-filter__type label:last-of-type:before
+{
+    top: 0;
+    left: 0;
+    border-top-left-radius: 20px;
+    z-index: 2;
+}
+
+.table-filter__type label:last-of-type:after
+{
+    bottom: 0;
+    left: -20px;
+}
+
+.table-filter__terminal
+{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+    -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+    -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+    -webkit-flex: 0 0 300px;
+      -ms-flex: 0 0 300px;
+          flex: 0 0 300px;
+}
+
+.table-filter__terminal-text
+{
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.table-filter__terminal-types
+{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex: 1 1 150px;
+      -ms-flex: 1 1 150px;
+          flex: 1 1 150px;
+    -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+}
+
+.table-filter__terminal-types label
+{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+    -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.table-filter__terminal-types label:first-child
+{
+    background-color: #d93232;
+}
+
+.table-filter__terminal-types label:first-child:hover
+{
+    background-color: #e83d3d;
+}
+
+.table-filter__terminal-types label:first-child:active
+{
+    background-color: #c62c2c;
+}
+
+.table-filter__terminal-types label:nth-child(2)
+{
+    background-color: #3275d9;
+}
+
+.table-filter__terminal-types label:nth-child(2):hover
+{
+    background-color: #3d81e8;
+}
+
+.table-filter__terminal-types label:nth-child(2):active
+{
+    background-color: #2c6ac6;
+}
+
+.table-filter__terminal-types label:nth-child(3) {
+    background-color: #ac32d9;
+}
+
+.table-filter__terminal-types label:nth-child(3):hover
+{
+    background-color: #ba3de8;
+}
+
+.table-filter__terminal-types label:nth-child(3):active
+{
+    background-color: #9c2cc6;
+}
+
+.table-filter__terminal-types label:nth-child(4) {
+    background-color: #61d932;
+}
+
+.table-filter__terminal-types label:nth-child(4):hover
+{
+    background-color: #6de83d;
+}
+
+.table-filter__terminal-types label:nth-child(4):active
+{
+    background-color: #57c62c;
+}
+
+.table-filter__city
+{
+    -webkit-flex: 0 1 200px;
+      -ms-flex: 0 1 200px;
+          flex: 0 1 200px;
+    width: 100%;
+    min-width: 50px;
+    padding: 5px;
+    outline: none;
+    border: 3px solid #b7babe;
+    border-radius: 5px;
+    color: #000;
+    background-color: #fff;
+    transition: border 0.3s;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.table-filter__city:invalid
+{
+    border: 3px solid #f00;
+}
+
+.table-filter__city:focus
+{
+    border: 3px solid #eab664;
+}
+
+#filter-departure:checked ~ .table-filter label[for="filter-departure"],
+#filter-arrival:checked ~ .table-filter label[for="filter-arrival"]
+{
+    background-image: linear-gradient(#f88a10 0%, #eab664 100%);
+}
+
+#filter-departure:checked ~ .table-filter label[for="filter-departure"]:before,
+#filter-arrival:checked ~ .table-filter label[for="filter-arrival"]:before
+{
+    background-image: linear-gradient(#f88a10 0%, #f1a03a 100%);
+}
+
+#filter-departure:checked ~ .table-filter label[for="filter-departure"]:after,
+#filter-arrival:checked ~ .table-filter label[for="filter-arrival"]:after
+{
+    background-image: linear-gradient(#f1a03a 0%, #eab664 100%);
+}
+
+#filter-departure:not(:checked) ~ .table-filter label[for="filter-departure"],
+#filter-arrival:not(:checked) ~ .table-filter label[for="filter-arrival"]
+{
+    background-image: linear-gradient(#dadfe1 0%, #b7babe 100%);
+}
+
+#filter-departure:not(:checked) ~ .table-filter label[for="filter-departure"]:before,
+#filter-arrival:not(:checked) ~ .table-filter label[for="filter-arrival"]:before
+{
+    background-image: linear-gradient(#dadfe1 0%, #c9cdd0 100%);
+}
+
+#filter-departure:not(:checked) ~ .table-filter label[for="filter-departure"]:after,
+#filter-arrival:not(:checked) ~ .table-filter label[for="filter-arrival"]:after
+{
+    background-image: linear-gradient(#c9cdd0 0%, #b7babe 100%);
+}
+
+#terminal-a:not(:checked) ~ .table-filter label[for="terminal-a"],
+#terminal-b:not(:checked) ~ .table-filter label[for="terminal-b"],
+#terminal-c:not(:checked) ~ .table-filter label[for="terminal-c"],
+#terminal-d:not(:checked) ~ .table-filter label[for="terminal-d"]
+{
+    background-color: #b8bcbf;
+}
+
+#terminal-a:not(:checked) ~ .table-filter label[for="terminal-a"]:hover,
+#terminal-b:not(:checked) ~ .table-filter label[for="terminal-b"]:hover,
+#terminal-c:not(:checked) ~ .table-filter label[for="terminal-c"]:hover,
+#terminal-d:not(:checked) ~ .table-filter label[for="terminal-d"]:hover
+{
+    background-color: #c0c9d1;
+}
+
+table
+{
+    width: 100%;
+    min-width: 1000px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    color: #000;
+    font-size: 1.6rem;
+    table-layout: fixed;
+}
+
+table caption
+{
+    margin-top: 10px;
+    caption-side: bottom;
+}
+
+table thead tr
+{
+    color: #fff;
+    background-image: linear-gradient(#555555 0%, #000000 100%);
+}
+
+table thead tr:hover
+{
+    background-image: linear-gradient(#666666 0%, #333333 100%);
+}
+
+table thead tr th
+{
+    height: 50px;
+}
+
+table thead tr th:hover
+{
+    background-image: linear-gradient(#dadfe1 0%, #b7babe 100%);
+}
+
+table thead tr .row-type,
+table thead tr .row-flight,
+table thead tr .row-scheduled,
+table thead tr .row-aircraft,
+table thead tr .row-terminal,
+table thead tr .row-status
+{
+    width: 10%;
+}
+
+table thead tr .row-airline,
+table thead tr .row-dest
+{
+    width: 20%;
+}
+
+table tbody tr
+{
+    height: 50px;
+    border-bottom: 1px solid #000;
+}
+
+table tbody tr[data-type~="departure"]:nth-child(2),
+table tbody tr[data-type~="departure"]:nth-child(5),
+table tbody tr[data-type~="departure"]:nth-child(10),
+table tbody tr[data-type~="departure"]:nth-child(13),
+table tbody tr[data-type~="departure"]:nth-child(14)
+{
+    background-color: #f88a10;
+}
+
+table tbody tr[data-type~="departure"]:nth-child(2):hover,
+table tbody tr[data-type~="departure"]:nth-child(5):hover,
+table tbody tr[data-type~="departure"]:nth-child(10):hover,
+table tbody tr[data-type~="departure"]:nth-child(13):hover,
+table tbody tr[data-type~="departure"]:nth-child(14):hover
+{
+    background-color: #ffce22;
+}
+
+table tbody tr[data-type~="departure"]:nth-child(2) td:hover,
+table tbody tr[data-type~="departure"]:nth-child(5) td:hover,
+table tbody tr[data-type~="departure"]:nth-child(10) td:hover,
+table tbody tr[data-type~="departure"]:nth-child(13) td:hover,
+table tbody tr[data-type~="departure"]:nth-child(14) td:hover
+{
+    background-color: #f88a10;
+}
+
+table tbody tr[data-type~="departure"]:nth-child(3),
+table tbody tr[data-type~="departure"]:nth-child(7),
+table tbody tr[data-type~="departure"]:nth-child(11),
+table tbody tr[data-type~="departure"]:nth-child(15)
+{
+    background-color: #eab664;
+}
+
+table tbody tr[data-type~="departure"]:nth-child(3):hover,
+table tbody tr[data-type~="departure"]:nth-child(7):hover,
+table tbody tr[data-type~="departure"]:nth-child(11):hover,
+table tbody tr[data-type~="departure"]:nth-child(15):hover
+{
+    background-color: #f5e373;
+}
+
+table tbody tr[data-type~="departure"]:nth-child(3) td:hover,
+table tbody tr[data-type~="departure"]:nth-child(7) td:hover,
+table tbody tr[data-type~="departure"]:nth-child(11) td:hover,
+table tbody tr[data-type~="departure"]:nth-child(15) td:hover
+{
+    background-color: #eab664;
+}
+
+table tbody tr[data-type~="arrival"]:nth-child(1),
+table tbody tr[data-type~="arrival"]:nth-child(6),
+table tbody tr[data-type~="arrival"]:nth-child(9),
+table tbody tr[data-type~="arrival"]:nth-child(13)
+{
+    background-color: #f88a10;
+}
+
+table tbody tr[data-type~="arrival"]:nth-child(1):hover,
+table tbody tr[data-type~="arrival"]:nth-child(6):hover,
+table tbody tr[data-type~="arrival"]:nth-child(9):hover,
+table tbody tr[data-type~="arrival"]:nth-child(13):hover
+{
+    background-color: #ffce22;
+}
+
+table tbody tr[data-type~="arrival"]:nth-child(1) td:hover,
+table tbody tr[data-type~="arrival"]:nth-child(6) td:hover,
+table tbody tr[data-type~="arrival"]:nth-child(9) td:hover,
+table tbody tr[data-type~="arrival"]:nth-child(13) td:hover
+{
+    background-color: #f88a10;
+}
+
+table tbody tr[data-type~="arrival"]:nth-child(2),
+table tbody tr[data-type~="arrival"]:nth-child(4),
+table tbody tr[data-type~="arrival"]:nth-child(8),
+table tbody tr[data-type~="arrival"]:nth-child(12)
+{
+    background-color: #eab664;
+}
+
+table tbody tr[data-type~="arrival"]:nth-child(2):hover,
+table tbody tr[data-type~="arrival"]:nth-child(4):hover,
+table tbody tr[data-type~="arrival"]:nth-child(8):hover,
+table tbody tr[data-type~="arrival"]:nth-child(12):hover
+{
+    background-color: #f5e373;
+}
+
+table tbody tr[data-type~="arrival"]:nth-child(2) td:hover,
+table tbody tr[data-type~="arrival"]:nth-child(4) td:hover,
+table tbody tr[data-type~="arrival"]:nth-child(8) td:hover,
+table tbody tr[data-type~="arrival"]:nth-child(12) td:hover
+{
+    background-color: #eab664;
+}
+
+table tbody td.cell-type
+{
+    padding-left: 10px;
+}
+
+table tbody td:not(.cell-type)
+{
+    text-align: center;
+}
+
+table tbody td.cell-airline
+{
+    text-align: center;
+}
+
+table tbody td.cell-airline img
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+table tbody td span
+{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+table tbody td span.check-in,
+table tbody td span.boarding
+{
+    background-color: #4bb313;
+}
+
+table tbody td span.closed,
+table tbody td span.departed,
+table tbody td span.cancel
+{
+    background-color: #e22222;
+}
+
+#terminal-a:not(:checked) ~ table tbody tr[data-terminal~="a"],
+#terminal-b:not(:checked) ~ table tbody tr[data-terminal~="b"],
+#terminal-c:not(:checked) ~ table tbody tr[data-terminal~="c"],
+#terminal-d:not(:checked) ~ table tbody tr[data-terminal~="d"],
+#filter-departure:checked ~ table tbody tr[data-type~="arrival"],
+#filter-arrival:checked ~ table tbody tr[data-type~="departure"],
+#city-departure[value="Moscow"] ~ table tbody tr:not([data-city~="Moscow"]),
+#city-departure[value="Minsk"] ~ table tbody tr:not([data-city~="Minsk"]),
+#city-departure[value="New-Dehli"] ~ table tbody tr:not([data-city~="New-Dehli"]),
+#city-departure[value="London"] ~ table tbody tr:not([data-city~="London"]),
+#city-departure[value="Seatle"] ~ table tbody tr:not([data-city~="Seatle"]),
+#city-departure[value="Ankara"] ~ table tbody tr:not([data-city~="Ankara"]),
+#city-departure[value="Brazilia"] ~ table tbody tr:not([data-city~="Brazilia"]),
+#city-departure[value="Beijing"] ~ table tbody tr:not([data-city~="Beijing"]),
+#city-departure[value="Barcelona"] ~ table tbody tr:not([data-city~="Barcelona"]) {
+    display: none;
+}
+
+.table-form
+{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+    -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+    -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+    width: 100%;
+    min-width: 1000px;
+    max-width: 1200px;
+    margin: 50px auto 0;
+    color: #000;
+    font-size: 1.4rem;
+    border: 1px solid #000;
+    padding: 20px;
+}
+
+.table-form label
+{
+    -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+    margin-left: 50px;
+}
+
+.table-form input
+{
+    -webkit-flex: 4 1 auto;
+      -ms-flex: 4 1 auto;
+          flex: 4 1 auto;
+    margin-right: 50px;
+    padding: 10px;
+    outline: none;
+    border: 3px solid #b7babe;
+    transition: border 0.3s;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.table-form input:invalid
+{
+    border: 3px solid #f00;
+}
+
+.table-form input:valid
+{
+    border: 3px solid #4bb313;
+}
+
+.table-form input:focus
+{
+    border: 3px solid #eab664;
+}
+
+.table-form button
+{
+    margin-top: 20px;
+    -webkit-flex: 1 0 100%;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
+    padding: 10px;
+    outline: none;
+    background-color: #ff9000;
+    border: 2px solid #666;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.6rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    display: none;
+}
+
+.table-form button:hover
+{
+    background-color: #ffb14d;
+}
+
+#phone:valid ~ #email:valid ~ button
+{
+    display: block;
+}
+/*# sourceMappingURL=index.css.map */

@@ -6,13 +6,234 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <!-- Поле для фильтрации по городу -->
-        <input
-            type="text"
-            placeholder="Город отправления"
-            value=""
-            onkeyup="this.setAttribute('value', this.value)">
+        <input id="filter-departure" name="flight-type" type="radio" value="departure" checked>
+        <input id="filter-arrival" name="flight-type" type="radio" value="arrival">
+        <input id="terminal-a" name="terminal-name" type="checkbox" value="terminal-a" checked>
+        <input id="terminal-b" name="terminal-name" type="checkbox" value="terminal-b" checked>
+        <input id="terminal-c" name="terminal-name" type="checkbox" value="terminal-c" checked>
+        <input id="terminal-d" name="terminal-name" type="checkbox" value="terminal-d" checked>
+        <input id="city-departure" name="city-departure" maxlength="30" pattern="[^\d+.,/\=_]+"
+            type="text" value="">
 
-        <!-- Здесь применять вашу самую сильную магию -->
+        <div class="table-filter">
+            <div class="table-filter__type">
+                <label for="filter-departure">
+                    <span></span>
+                </label>
+                <label for="filter-arrival">
+                    <span></span>
+                </label>
+            </div>
+            <div class="table-filter__terminal">
+                <p class="table-filter__terminal-text">
+                    Терминалы:
+                </p>
+                <div class="table-filter__terminal-types">
+                    <label for="terminal-a">A</label>
+                    <label for="terminal-b">B</label>
+                    <label for="terminal-c">C</label>
+                    <label for="terminal-d">D</label>
+                </div>
+            </div>
+            <input id="city-daparture-clone" name="city-daparture" class="table-filter__city"
+                maxlength="30" pattern="^([a-zA-Zа-яА-ЯёЁ]([^\d+.,/\=_])?)+$" type="text"
+                placeholder="Город отправления" value=""
+                onkeyup="document.getElementById('city-departure').setAttribute('value', this.value)">
+        </div>
+
+        <table>
+            <caption>Табло аэропорта Шереметьево</caption>
+            <thead>
+                <tr>
+                    <th class="row-type">Type</th>
+                    <th class="row-airline">Airline</th>
+                    <th class="row-flight">Flight</th>
+                    <th class="row-scheduled">Scheduled</th>
+                    <th class="row-dest">Destination</th>
+                    <th class="row-aircraft">Aircraft</th>
+                    <th class="row-terminal">Terminal</th>
+                    <th class="row-status">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-type="arrival" data-terminal="a" data-city="Moscow">
+                    <td class="cell-type">Arrival</td>
+                    <td class="cell-airline">Donavia <img src="img/donavia.png" width="100" height="40"
+                        alt="Donavia logo"/></td>
+                    <td class="cell-flight">FT 3775</td>
+                    <td class="cell-scheduled">16:55</td>
+                    <td class="cell-dest">Moscow</td>
+                    <td class="cell-aircraft">Antonov 124</td>
+                    <td class="cell-terminal">A</td>
+                    <td class="cell-status">Landed</td>
+                </tr>
+                <tr data-type="departure" data-terminal="b" data-city="Minsk">
+                    <td class="cell-type">Departure</td>
+                    <td class="cell-airline">Aeroflot <img src="img/aeroflot.png" width="100" height="40"
+                        alt="Aeroflot logo"/></td>
+                    <td class="cell-flight">S7 4035</td>
+                    <td class="cell-scheduled">17:15</td>
+                    <td class="cell-dest">Minsk</td>
+                    <td class="cell-aircraft">Airbus A320</td>
+                    <td class="cell-terminal">B</td>
+                    <td class="cell-status"><span class="departed">Departed</span></td>
+                </tr>
+                <tr data-type="departure" data-terminal="c" data-city="New-Dehli">
+                    <td class="cell-type">Departure</td>
+                    <td class="cell-airline">Air India <img src="img/air-india.png" width="100" height="40"
+                        alt="Air India logo"/></td>
+                    <td class="cell-flight">FV 643</td>
+                    <td class="cell-scheduled">17:30</td>
+                    <td class="cell-dest">New-Dehli</td>
+                    <td class="cell-aircraft">Airbus A320</td>
+                    <td class="cell-terminal">C</td>
+                    <td class="cell-status"><span class="closed">Closed</span></td>
+                </tr>
+                <tr data-type="arrival" data-terminal="b" data-city="Moscow">
+                    <td class="cell-type">Arrival</td>
+                    <td class="cell-airline">Transaero <img src="img/transaero.png" width="100" height="40"
+                        alt="Transaero logo"/></td>
+                    <td class="cell-flight">SL 3225</td>
+                    <td class="cell-scheduled">17:35</td>
+                    <td class="cell-dest">Moscow</td>
+                    <td class="cell-aircraft">Antonov 124</td>
+                    <td class="cell-terminal">B</td>
+                    <td class="cell-status">Landed</td>
+                </tr>
+                <tr data-type="departure" data-terminal="d" data-city="London">
+                    <td class="cell-type">Departure</td>
+                    <td class="cell-airline">British Airways <img src="img/british-airways.png" width="100"
+                        height="40" alt="British Airways logo"/></td>
+                    <td class="cell-flight">SU 4180</td>
+                    <td class="cell-scheduled">17:43</td>
+                    <td class="cell-dest">London</td>
+                    <td class="cell-aircraft">MD 83</td>
+                    <td class="cell-terminal">D</td>
+                    <td class="cell-status"><span class="boarding">Boarding</span></td>
+                </tr>
+                <tr data-type="arrival" data-terminal="c" data-city="Moscow">
+                    <td class="cell-type">Arrival</td>
+                    <td class="cell-airline">Transaero <img src="img/transaero.png" width="100" height="40"
+                        alt="Transaero logo"/></td>
+                    <td class="cell-flight">S7 115</td>
+                    <td class="cell-scheduled">17:55</td>
+                    <td class="cell-dest">Moscow</td>
+                    <td class="cell-aircraft">Boeing 747-400</td>
+                    <td class="cell-terminal">C</td>
+                    <td class="cell-status">Delayed 18:20</td>
+                </tr>
+                <tr data-type="departure" data-terminal="a" data-city="Seatle">
+                    <td class="cell-type">Departure</td>
+                    <td class="cell-airline">Jet Airways <img src="img/jet-airways.png" width="100"
+                        height="40" alt="Jet Airways logo"/></td>
+                    <td class="cell-flight">ZT 3360</td>
+                    <td class="cell-scheduled">18:00</td>
+                    <td class="cell-dest">Seatle</td>
+                    <td class="cell-aircraft">Airbus A320</td>
+                    <td class="cell-terminal">A</td>
+                    <td class="cell-status"><span class="check-in">Check-In</span></td>
+                </tr>
+                <tr data-type="arrival" data-terminal="d" data-city="Moscow">
+                    <td class="cell-type">Arrival</td>
+                    <td class="cell-airline">Russia <img src="img/russia.png" width="100" height="40"
+                        alt="Russia logo"/></td>
+                    <td class="cell-flight">KL 985</td>
+                    <td class="cell-scheduled">18:12</td>
+                    <td class="cell-dest">Moscow</td>
+                    <td class="cell-aircraft">Boeing 757-200</td>
+                    <td class="cell-terminal">D</td>
+                    <td class="cell-status">On Time</td>
+                </tr>
+                <tr data-type="arrival" data-terminal="a" data-city="Moscow">
+                    <td class="cell-type">Arrival</td>
+                    <td class="cell-airline">Aeroflot <img src="img/aeroflot.png" width="100" height="40"
+                        alt="Aeroflot logo"/></td>
+                    <td class="cell-flight">UZ 2033</td>
+                    <td class="cell-scheduled">18:20</td>
+                    <td class="cell-dest">Moscow</td>
+                    <td class="cell-aircraft">Airbus A340-300</td>
+                    <td class="cell-terminal">A</td>
+                    <td class="cell-status">Delayed 18:30</td>
+                </tr>
+                <tr data-type="departure" data-terminal="c" data-city="Ankara">
+                    <td class="cell-type">Departure</td>
+                    <td class="cell-airline">Turkish Airlines <img src="img/turkish-airlines.png" width="100"
+                        height="40" alt="Turkish Airlines logo"/></td>
+                    <td class="cell-flight">ZW 9855</td>
+                    <td class="cell-scheduled">18:24</td>
+                    <td class="cell-dest">Ankara</td>
+                    <td class="cell-aircraft">Airbus A320</td>
+                    <td class="cell-terminal">C</td>
+                    <td class="cell-status"><span class="cancel">Cancelled</span></td>
+                </tr>
+                <tr data-type="departure" data-terminal="d" data-city="Brazilia">
+                    <td class="cell-type">Departure</td>
+                    <td class="cell-airline">Jet Airways <img src="img/jet-airways.png" width="100"
+                        height="40" alt="Jet Airways logo"/></td>
+                    <td class="cell-flight">UY 1288</td>
+                    <td class="cell-scheduled">18:31</td>
+                    <td class="cell-dest">Brazilia</td>
+                    <td class="cell-aircraft">MD 83</td>
+                    <td class="cell-terminal">D</td>
+                    <td class="cell-status"><span class="boarding">Boarding</span></td>
+                </tr>
+                <tr data-type="arrival" data-terminal="a" data-city="Moscow">
+                    <td class="cell-type">Arrival</td>
+                    <td class="cell-airline">Donavia <img src="img/donavia.png" width="100" height="40"
+                        alt="Donavia logo"/></td>
+                    <td class="cell-flight">KT 2135</td>
+                    <td class="cell-scheduled">18:43</td>
+                    <td class="cell-dest">Moscow</td>
+                    <td class="cell-aircraft">Fokker 100</td>
+                    <td class="cell-terminal">A</td>
+                    <td class="cell-status">On Time</td>
+                </tr>
+                <tr data-type="arrival" data-terminal="b" data-city="Moscow">
+                    <td class="cell-type">Arrival</td>
+                    <td class="cell-airline">Aeroflot <img src="img/aeroflot.png" width="100" height="40"
+                        alt="Aeroflot logo"/></td>
+                    <td class="cell-flight">SI 7775</td>
+                    <td class="cell-scheduled">18:55</td>
+                    <td class="cell-dest">Moscow</td>
+                    <td class="cell-aircraft">Antonov 124</td>
+                    <td class="cell-terminal">B</td>
+                    <td class="cell-status">Delayed 19:30</td>
+                </tr>
+                <tr data-type="departure" data-terminal="c" data-city="Beijing">
+                    <td class="cell-type">Departure</td>
+                    <td class="cell-airline">Air India <img src="img/air-india.png" width="100" height="40"
+                        alt="Air India logo"/></td>
+                    <td class="cell-flight">KT 2135</td>
+                    <td class="cell-scheduled">19:05</td>
+                    <td class="cell-dest">Beijing</td>
+                    <td class="cell-aircraft">Airbus A320</td>
+                    <td class="cell-terminal">C</td>
+                    <td class="cell-status"><span class="check-in">Check-In</span></td>
+                </tr>
+                <tr data-type="departure" data-terminal="d" data-city="Barcelona">
+                    <td class="cell-type">Departure</td>
+                    <td class="cell-airline">British Airways <img src="img/british-airways.png" width="100"
+                        height="40" alt="British Airways logo"/></td>
+                    <td class="cell-flight">SZ 3315</td>
+                    <td class="cell-scheduled">19:25</td>
+                    <td class="cell-dest">Barcelona</td>
+                    <td class="cell-aircraft">Fokker 100</td>
+                    <td class="cell-terminal">D</td>
+                    <td class="cell-status"><span class="check-in">Check-In</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form class="table-form" action="get-data.php" method="post">
+            <label for="phone">Введите номер телефона:</label>
+            <input id="phone" name="phone" type="tel" placeholder="+7 (978) 111-2-233"
+                maxlength="20" required
+                pattern="^\+?\d{0,4}\s?(\d{3}|\(\d{3}\))\s?\d{3}[\s-]?\d[\s-]?\d{3}$">
+            <label for="phone">Введите ваш email:</label>
+            <input id="email" name="email" type="email" placeholder="something@mail.ru"
+                maxlength="30" required
+                pattern="^[a-zа-яё0-9](\.?[a-zа-яё0-9-_]+)+@([a-zа-яё0-9][-_a-zа-яё0-9]+\.)+[a-zа-яё]{2,4}$">
+            <button type="submit">Отправить данные о рейсе на телефон</button>
+        </form>
     </body>
 </html>
