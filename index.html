@@ -6,8 +6,8 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <input id="filter-departure" name="flight-type" type="radio" value="departure" checked>
-        <input id="filter-arrival" name="flight-type" type="radio" value="arrival">
+        <input id="filter-departure" name="flight-type" type="checkbox" value="departure" checked>
+        <input id="filter-arrival" name="flight-type" type="checkbox" value="arrival" checked>
         <input id="terminal-a" name="terminal-name" type="checkbox" value="terminal-a" checked>
         <input id="terminal-b" name="terminal-name" type="checkbox" value="terminal-b" checked>
         <input id="terminal-c" name="terminal-name" type="checkbox" value="terminal-c" checked>
@@ -42,7 +42,6 @@
         </div>
 
         <table>
-            <caption>Табло аэропорта Шереметьево</caption>
             <thead>
                 <tr>
                     <th class="row-type">Type</th>
@@ -231,8 +230,7 @@
                 pattern="^\+?\d{0,4}\s?(\d{3}|\(\d{3}\))\s?\d{3}[\s-]?\d[\s-]?\d{3}$">
             <label for="phone">Введите ваш email:</label>
             <input id="email" name="email" type="email" placeholder="something@mail.ru"
-                maxlength="30" required
-                pattern="^[a-zа-яё0-9](\.?[a-zа-яё0-9-_]+)+@([a-zа-яё0-9][-_a-zа-яё0-9]+\.)+[a-zа-яё]{2,4}$">
+                maxlength="30" required>
             <button type="submit">Отправить данные о рейсе на телефон</button>
         </form>
     </body>

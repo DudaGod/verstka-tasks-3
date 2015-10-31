@@ -32,7 +32,6 @@ body
     padding: 0 20px;
 }
 
-input[type=radio],
 input[type=checkbox],
 input[id="city-departure"]
 {
@@ -102,16 +101,6 @@ input[id="city-departure"]
     height: 32px;
 }
 
-.table-filter__type label:before,
-.table-filter__type label:after
-{
-    content: '';
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    z-index: 1;
-}
-
 .table-filter__type label span
 {
     transition: all .3s;
@@ -124,6 +113,17 @@ input[id="city-departure"]
     height: 40px;
 }
 
+.table-filter__type label:before,
+.table-filter__type label:after
+{
+    content: '';
+    position: absolute;
+    height: 21px;
+    width: 21px;
+    z-index: 1;
+    background-color: red;
+}
+
 .table-filter__type label:first-of-type
 {
     border-top-left-radius: 20px;
@@ -132,13 +132,13 @@ input[id="city-departure"]
 
 .table-filter__type label:first-of-type:before
 {
-    top: 0;
+    top: -1px;
     right: -20px;
 }
 
 .table-filter__type label:first-of-type:after
 {
-    bottom: 0;
+    bottom: -1px;
     right: 0;
     border-bottom-right-radius: 20px;
     z-index: 2;
@@ -161,15 +161,15 @@ input[id="city-departure"]
 
 .table-filter__type label:last-of-type:before
 {
-    top: 0;
-    left: 0;
+    top: -1px;
+    left: -1px;
     border-top-left-radius: 20px;
     z-index: 2;
 }
 
 .table-filter__type label:last-of-type:after
 {
-    bottom: 0;
+    bottom: -1px;
     left: -20px;
 }
 
@@ -322,16 +322,28 @@ input[id="city-departure"]
     background-image: linear-gradient(#f88a10 0%, #eab664 100%);
 }
 
-#filter-departure:checked ~ .table-filter label[for="filter-departure"]:before,
+#filter-departure:checked ~ .table-filter label[for="filter-departure"]:before {
+    background-image: linear-gradient(#f88a10 0%, #f1a03a 100%);
+    border-top: 1px solid #000;
+}
+
 #filter-arrival:checked ~ .table-filter label[for="filter-arrival"]:before
 {
     background-image: linear-gradient(#f88a10 0%, #f1a03a 100%);
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
 }
 
-#filter-departure:checked ~ .table-filter label[for="filter-departure"]:after,
+#filter-departure:checked ~ .table-filter label[for="filter-departure"]:after {
+    background-image: linear-gradient(#f1a03a 0%, #eab664 100%);
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
 #filter-arrival:checked ~ .table-filter label[for="filter-arrival"]:after
 {
     background-image: linear-gradient(#f1a03a 0%, #eab664 100%);
+    border-bottom: 1px solid #000;
 }
 
 #filter-departure:not(:checked) ~ .table-filter label[for="filter-departure"],
@@ -340,16 +352,28 @@ input[id="city-departure"]
     background-image: linear-gradient(#dadfe1 0%, #b7babe 100%);
 }
 
-#filter-departure:not(:checked) ~ .table-filter label[for="filter-departure"]:before,
+#filter-departure:not(:checked) ~ .table-filter label[for="filter-departure"]:before {
+    background-image: linear-gradient(#dadfe1 0%, #c9cdd0 100%);
+    border-top: 1px solid #000;
+}
+
 #filter-arrival:not(:checked) ~ .table-filter label[for="filter-arrival"]:before
 {
     background-image: linear-gradient(#dadfe1 0%, #c9cdd0 100%);
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
 }
 
-#filter-departure:not(:checked) ~ .table-filter label[for="filter-departure"]:after,
+#filter-departure:not(:checked) ~ .table-filter label[for="filter-departure"]:after {
+    background-image: linear-gradient(#c9cdd0 0%, #b7babe 100%);
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
 #filter-arrival:not(:checked) ~ .table-filter label[for="filter-arrival"]:after
 {
     background-image: linear-gradient(#c9cdd0 0%, #b7babe 100%);
+    border-bottom: 1px solid #000;
 }
 
 #terminal-a:not(:checked) ~ .table-filter label[for="terminal-a"],
@@ -374,17 +398,11 @@ table
     min-width: 1000px;
     max-width: 1200px;
     margin: 0 auto;
-    border: 1px solid #000;
     border-collapse: collapse;
     color: #000;
     font-size: 1.6rem;
     table-layout: fixed;
-}
-
-table caption
-{
-    margin-top: 10px;
-    caption-side: bottom;
+    overflow: hidden;
 }
 
 table thead tr
@@ -428,105 +446,51 @@ table tbody tr
 {
     height: 50px;
     border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
 }
 
-table tbody tr[data-type~="departure"]:nth-child(2),
-table tbody tr[data-type~="departure"]:nth-child(5),
-table tbody tr[data-type~="departure"]:nth-child(10),
-table tbody tr[data-type~="departure"]:nth-child(13),
-table tbody tr[data-type~="departure"]:nth-child(14)
-{
-    background-color: #f88a10;
+table tbody tr td,
+table thead tr th {
+    position: relative;
 }
 
-table tbody tr[data-type~="departure"]:nth-child(2):hover,
-table tbody tr[data-type~="departure"]:nth-child(5):hover,
-table tbody tr[data-type~="departure"]:nth-child(10):hover,
-table tbody tr[data-type~="departure"]:nth-child(13):hover,
-table tbody tr[data-type~="departure"]:nth-child(14):hover
-{
+table tbody tr td:hover:before,
+table thead tr th:hover:before {
+    content: '';
+    position: absolute;
     background-color: #ffce22;
+    width: 100%;
+    height: 4000px;
+    left: 0;
+    top: -2000px;
+    z-index: -1;
 }
 
-table tbody tr[data-type~="departure"]:nth-child(2) td:hover,
-table tbody tr[data-type~="departure"]:nth-child(5) td:hover,
-table tbody tr[data-type~="departure"]:nth-child(10) td:hover,
-table tbody tr[data-type~="departure"]:nth-child(13) td:hover,
-table tbody tr[data-type~="departure"]:nth-child(14) td:hover
-{
+table tbody tr:nth-child(odd) td:first-child:after {
+    content: '';
+    position: absolute;
     background-color: #f88a10;
+    width: 4000px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -2;
 }
 
-table tbody tr[data-type~="departure"]:nth-child(3),
-table tbody tr[data-type~="departure"]:nth-child(7),
-table tbody tr[data-type~="departure"]:nth-child(11),
-table tbody tr[data-type~="departure"]:nth-child(15)
-{
+table tbody tr:nth-child(even) td:first-child:after {
+    content: '';
+    position: absolute;
     background-color: #eab664;
+    width: 4000px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -2;
 }
 
-table tbody tr[data-type~="departure"]:nth-child(3):hover,
-table tbody tr[data-type~="departure"]:nth-child(7):hover,
-table tbody tr[data-type~="departure"]:nth-child(11):hover,
-table tbody tr[data-type~="departure"]:nth-child(15):hover
-{
-    background-color: #f5e373;
-}
-
-table tbody tr[data-type~="departure"]:nth-child(3) td:hover,
-table tbody tr[data-type~="departure"]:nth-child(7) td:hover,
-table tbody tr[data-type~="departure"]:nth-child(11) td:hover,
-table tbody tr[data-type~="departure"]:nth-child(15) td:hover
-{
-    background-color: #eab664;
-}
-
-table tbody tr[data-type~="arrival"]:nth-child(1),
-table tbody tr[data-type~="arrival"]:nth-child(6),
-table tbody tr[data-type~="arrival"]:nth-child(9),
-table tbody tr[data-type~="arrival"]:nth-child(13)
-{
-    background-color: #f88a10;
-}
-
-table tbody tr[data-type~="arrival"]:nth-child(1):hover,
-table tbody tr[data-type~="arrival"]:nth-child(6):hover,
-table tbody tr[data-type~="arrival"]:nth-child(9):hover,
-table tbody tr[data-type~="arrival"]:nth-child(13):hover
-{
+table tbody tr:hover {
     background-color: #ffce22;
-}
-
-table tbody tr[data-type~="arrival"]:nth-child(1) td:hover,
-table tbody tr[data-type~="arrival"]:nth-child(6) td:hover,
-table tbody tr[data-type~="arrival"]:nth-child(9) td:hover,
-table tbody tr[data-type~="arrival"]:nth-child(13) td:hover
-{
-    background-color: #f88a10;
-}
-
-table tbody tr[data-type~="arrival"]:nth-child(2),
-table tbody tr[data-type~="arrival"]:nth-child(4),
-table tbody tr[data-type~="arrival"]:nth-child(8),
-table tbody tr[data-type~="arrival"]:nth-child(12)
-{
-    background-color: #eab664;
-}
-
-table tbody tr[data-type~="arrival"]:nth-child(2):hover,
-table tbody tr[data-type~="arrival"]:nth-child(4):hover,
-table tbody tr[data-type~="arrival"]:nth-child(8):hover,
-table tbody tr[data-type~="arrival"]:nth-child(12):hover
-{
-    background-color: #f5e373;
-}
-
-table tbody tr[data-type~="arrival"]:nth-child(2) td:hover,
-table tbody tr[data-type~="arrival"]:nth-child(4) td:hover,
-table tbody tr[data-type~="arrival"]:nth-child(8) td:hover,
-table tbody tr[data-type~="arrival"]:nth-child(12) td:hover
-{
-    background-color: #eab664;
 }
 
 table tbody td.cell-type
@@ -573,8 +537,8 @@ table tbody td span.cancel
 #terminal-b:not(:checked) ~ table tbody tr[data-terminal~="b"],
 #terminal-c:not(:checked) ~ table tbody tr[data-terminal~="c"],
 #terminal-d:not(:checked) ~ table tbody tr[data-terminal~="d"],
-#filter-departure:checked ~ table tbody tr[data-type~="arrival"],
-#filter-arrival:checked ~ table tbody tr[data-type~="departure"],
+#filter-departure:not(:checked) ~ table tbody tr[data-type~="departure"],
+#filter-arrival:not(:checked) ~ table tbody tr[data-type~="arrival"],
 #city-departure[value="Moscow"] ~ table tbody tr:not([data-city~="Moscow"]),
 #city-departure[value="Minsk"] ~ table tbody tr:not([data-city~="Minsk"]),
 #city-departure[value="New-Dehli"] ~ table tbody tr:not([data-city~="New-Dehli"]),

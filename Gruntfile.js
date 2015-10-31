@@ -158,8 +158,8 @@ fs.readFile(lessFile, "utf8", function(err, data) {
 
 
   grunt.registerTask('default', [
-    'newer:less',
-    'newer:autoprefixer',
+    //'newer:less',
+    //'newer:autoprefixer',
     'newer:svgmin',
     'newer:svgstore',
 
@@ -168,8 +168,8 @@ fs.readFile(lessFile, "utf8", function(err, data) {
   ]);
 
   grunt.registerTask('style', [
-    'newer:less',
-    'newer:autoprefixer'
+    //'newer:less',
+    //'newer:autoprefixer'
   ]);
 
   grunt.registerTask('img', [

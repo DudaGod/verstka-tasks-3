@@ -1,24 +1,26 @@
+# <a href="http://dudagod.github.io/verstka-tasks-3/" target="_blank">Демо</a>
+
 # Задача к лекции «CSS» – «Лет ми спик фром май харт»
 
-:sos: [Как создать Pull Request](https://github.com/urfu-2015/guides/blob/master/how-to-pull-request.md)  
-:warning: [Codestyle для HTML](https://github.com/urfu-2015/guides/blob/master/html-codestyle.md)  
-:warning: [Codestyle для CSS](https://github.com/urfu-2015/guides/blob/master/css-codestyle.md)  
+:sos: [Как создать Pull Request](https://github.com/urfu-2015/guides/blob/master/how-to-pull-request.md)
+:warning: [Codestyle для HTML](https://github.com/urfu-2015/guides/blob/master/html-codestyle.md)
+:warning: [Codestyle для CSS](https://github.com/urfu-2015/guides/blob/master/css-codestyle.md)
 :warning: При создании PullRequest'а не забудьте указать ваши имя и фамилию.
 
 ### Общие требования
 
 Мы очень хотим, чтобы код вы написали сами, а не пользовались внешними библиотеками.
 
-Прежде чем отправлять решение, проверьте его на соответствие [требованиям к HTML коду](https://github.com/urfu-2015/guides/blob/master/html-codestyle.md)   
+Прежде чем отправлять решение, проверьте его на соответствие [требованиям к HTML коду](https://github.com/urfu-2015/guides/blob/master/html-codestyle.md)
 и [требованиям к CSS](https://github.com/urfu-2015/guides/blob/master/css-codestyle.md).
 
 Когда вы создадите или обновите пулл-реквест, он частично будет проверен
 автоматически. Результаты вы увидите внизу:
 
-Если всё хорошо:  
+Если всё хорошо:
 <img width="308" alt="2015-10-08_1845" src="https://cloud.githubusercontent.com/assets/4534405/10368030/ccc43228-6dec-11e5-925e-47793862d13e.png">
 
-Если всё плохо:  
+Если всё плохо:
 <img width="218" alt="2015-10-08_1841" src="https://cloud.githubusercontent.com/assets/4534405/10367916/60487fc8-6dec-11e5-9e1d-2a1b15da2220.png">
 
 Проверить HTML можно и вручную:
